@@ -9,11 +9,6 @@ float k2;
 long init_time;
 long final_time;
 
-long oneCoreTest() {
-    
-    return millis() - init_time;
-}
-
 void test_one_core(void) {
     init_time = millis();
     for (i = 2; i <= 10000; i++) {
@@ -30,20 +25,20 @@ void test_one_core(void) {
         }
     }
     final_time = millis() - init_time;
-    Serial.print(oneCoreTest()); 
-    Serial.println(" miliseconds");
+    Serial.print(final_time); 
+    Serial.println(" miliseconds\n");
     TEST_ASSERT_EQUAL_INT_MESSAGE(10001, i, "One core test failed");
+    Serial.println("TEST END");
 }
 
 void setup() {
-    delay(2000);  // service delay
+    delay(2000);  // test service delay
     UNITY_BEGIN();
     Serial.begin(115200);
-    delay(1000);
-    Serial.println();
-    Serial.println("Test One Core\t: 10000 prime numbers");
+    Serial.println("\nTEST Board\t: "+String(FLAVOR));
+    Serial.println("TEST One Core\t: 10000 prime numbers");
     Serial.flush();
-    Serial.print("Test final time\t: ");
+    Serial.print("TEST final time\t: ");
     RUN_TEST(test_one_core);
     UNITY_END();
 }
