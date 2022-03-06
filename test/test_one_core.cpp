@@ -1,37 +1,34 @@
 #include <Arduino.h>
 #include <unity.h>
 
-
-long init_time;
 long primes_time;
 long palindromes_time;
+float k, j, k1, k2 = 0.0;
+int32_t i, n, b, sum = 0;
 
 void test_prime_numbers(void) {
-    float i, k, j, k1, k2;
     long primes_init_time = millis();
     for (i = 2; i <= 10000; i++) {
         k = int(sqrt(i)) + 1;
         for (j = 2; j <= k; j++) {
             k1 = i / j;
-            k2 = int(k1);
+            k2 = (int32_t) k1;
             if (k1 == k2) {
                 break;
             }
         }
         if (k1 != k2) {
-            Serial.print(i);
+            // Serial.print(String(i) + " ");
         }
     }
     primes_time = millis() - primes_init_time;
-    Serial.print("TEST prime numbers\t: ");
-    Serial.print(primes_time);
-    Serial.println(" miliseconds\n");
+    
     TEST_ASSERT_EQUAL_INT_MESSAGE(10001, i, "Prime numbers test failed");
 }
 
 void test_palindrome_numbers(void) {
     long palindromes_init_time = millis();
-    uint_fast32_t i, n, b, sum = 0;
+    int32_t i;
     for (i = 0; i <= 10000; i++) {
         n = i;
         while (n > 0) {
@@ -42,16 +39,12 @@ void test_palindrome_numbers(void) {
         }
         // If n and rev are same, n is palindrome number
         if (sum == i) {
-            Serial.print(i + " ");
+            // Serial.print(String(i) + " ");
         }
         sum = 0;
     }
 
-    Serial.println();
     palindromes_time = millis() - palindromes_init_time;
-    Serial.print("TEST palindrome numbers\t: ");
-    Serial.print(palindromes_time);
-    Serial.println(" miliseconds\n");
     TEST_ASSERT_EQUAL_INT_MESSAGE(10001, i, "Palindrome test failed");
 }
 
@@ -61,13 +54,21 @@ void setup() {
     Serial.begin(115200);
     Serial.println("\nTEST BOARD "+String(FLAVOR));
     Serial.flush();
-    init_time = millis();
+    
     RUN_TEST(test_prime_numbers);
     RUN_TEST(test_palindrome_numbers);
+
+    Serial.print("TEST prime numbers\t: ");
+    Serial.print(primes_time);
+    Serial.println(" miliseconds\n");
+    Serial.print("TEST palindrome numbers\t: ");
+    Serial.print(palindromes_time);
+    Serial.println(" miliseconds\n");
     Serial.print("TEST excution time\t: ");
     Serial.print(palindromes_time + primes_time);
     Serial.println(" miliseconds\n");
     Serial.println("TEST END");
+
     UNITY_END();
 }
 
