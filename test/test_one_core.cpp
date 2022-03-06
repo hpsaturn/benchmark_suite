@@ -19,7 +19,7 @@ void test_prime_numbers(void) {
             }
         }
         if (k1 != k2) {
-            // Serial.println(i);
+            Serial.print(i);
         }
     }
     primes_time = millis() - primes_init_time;
@@ -31,22 +31,23 @@ void test_prime_numbers(void) {
 
 void test_palindrome_numbers(void) {
     long palindromes_init_time = millis();
-    int i, n, b, rev = 0;
+    uint_fast32_t i, n, b, sum = 0;
     for (i = 0; i <= 10000; i++) {
         n = i;
         while (n > 0) {
             // Find reverse of n
             b = n % 10;
-            rev = rev * 10 + b;
+            sum = sum * 10 + b;
             n = n / 10;
         }
         // If n and rev are same, n is palindrome number
-        if (rev == i) {
-            // Serial.println(i + " ");
+        if (sum == i) {
+            Serial.print(i + " ");
         }
-        rev = 0;
+        sum = 0;
     }
 
+    Serial.println();
     palindromes_time = millis() - palindromes_init_time;
     Serial.print("TEST palindrome numbers\t: ");
     Serial.print(palindromes_time);
@@ -62,7 +63,7 @@ void setup() {
     Serial.flush();
     init_time = millis();
     RUN_TEST(test_prime_numbers);
-    // RUN_TEST(test_palindrome_numbers);
+    RUN_TEST(test_palindrome_numbers);
     Serial.print("TEST excution time\t: ");
     Serial.print(palindromes_time + primes_time);
     Serial.println(" miliseconds\n");
