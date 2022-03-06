@@ -86,6 +86,13 @@ void setupTasks(void) {
     xTaskCreatePinnedToCore(task_primes, "task_primes", 10000, NULL, 1, &tHandlePrimes, 0);
     xTaskCreatePinnedToCore(task_palindromes, "task_palindromes", 10000, NULL, 1, &tHandlePalindromes, 1);
 }
+
+void test_dual_core(void) {
+    setupTasks();
+    while(primes_time == 0 || palindromes_time == 0) {
+        delay(10);
+    }
+}
 #endif
 
 void printResults(void) {
@@ -109,10 +116,7 @@ void setup() {
     Serial.flush();
 
     #ifdef DUAL_CORE
-    setupTasks();
-    while(primes_time == 0 || palindromes_time == 0) {
-        delay(10);
-    }
+    RUN_TEST(test_dual_core);
     #else
     RUN_TEST(test_prime_numbers);
     RUN_TEST(test_palindrome_numbers);
