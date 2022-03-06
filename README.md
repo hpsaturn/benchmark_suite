@@ -42,8 +42,6 @@ TEST END
 1 Tests 0 Failures 0 Ignored
 =========== [PASSED] Took 7.91 seconds ========
 
-
-
 TEST BOARD ESP8266
 test_multi_core.cpp:117:test_prime_numbers	[PASSED]
 test_multi_core.cpp:118:test_palindrome_numbers	[PASSED]
@@ -53,6 +51,7 @@ TEST excution time	: 1845 miliseconds
 TEST END
 -----------------------
 2 Tests 0 Failures 0 Ignored
+=========== [PASSED] Took 10.08 seconds ========
 
 Test    Environment         Status    Duration
 ------  ------------------  --------  ------------
@@ -96,5 +95,3 @@ TEST palindrome numbers	: 1042 miliseconds
 TEST excution time	: 1846 miliseconds
 TEST END
 ```
-
-
