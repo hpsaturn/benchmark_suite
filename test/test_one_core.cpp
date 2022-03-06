@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <unity.h>
 
-float i;
+int32_t i;
 float k;
 float j;
 float k1;
@@ -21,10 +21,11 @@ void test_one_core(void) {
             }
         }
         if (k1 != k2) {
-            // Serial.println(i);
+            Serial.print(String(i) + " ");
         }
     }
     final_time = millis() - init_time;
+    Serial.println();
     Serial.print(final_time); 
     Serial.println(" miliseconds\n");
     TEST_ASSERT_EQUAL_INT_MESSAGE(10001, i, "One core test failed");
