@@ -45,8 +45,8 @@ TEST END
 
 
 TEST BOARD ESP8266
-test_one_core.cpp:117:test_prime_numbers	[PASSED]
-test_one_core.cpp:118:test_palindrome_numbers	[PASSED]
+test_multi_core.cpp:117:test_prime_numbers	[PASSED]
+test_multi_core.cpp:118:test_palindrome_numbers	[PASSED]
 TEST prime numbers	: 803 miliseconds
 TEST palindrome numbers	: 1042 miliseconds
 TEST excution time	: 1845 miliseconds
@@ -66,6 +66,35 @@ Test    Environment         Status    Duration
 
 ## Alternative output
 
+```bash
+pio test | grep TEST
 
+(master) avp:m5atom_benchmark$ pio test | grep TEST
+TEST BOARD M5ATOM
+TEST prime numbers	: 146 miliseconds
+TEST palindrome numbers	: 40 miliseconds
+TEST excution time	: 186 miliseconds
+TEST END
+TEST BOARD M5ATOM_DUAL_CORE
+TEST prime numbers	: 146 miliseconds
+TEST palindrome numbers	: 40 miliseconds
+TEST excution time	: 186 miliseconds
+TEST END
+TEST BOARD TDISPLAY
+TEST prime numbers	: 147 miliseconds
+TEST palindrome numbers	: 40 miliseconds
+TEST excution time	: 187 miliseconds
+TEST END
+TEST BOARD TDISPLAY_DUAL_CORE
+TEST prime numbers	: 146 miliseconds
+TEST palindrome numbers	: 40 miliseconds
+TEST excution time	: 186 miliseconds
+TEST END
+TEST BOARD ESP8266
+TEST prime numbers	: 804 miliseconds
+TEST palindrome numbers	: 1042 miliseconds
+TEST excution time	: 1846 miliseconds
+TEST END
+```
 
 
